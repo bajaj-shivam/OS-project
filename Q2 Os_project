@@ -1,0 +1,79 @@
+#include<stdio.h>
+//#include<conio.h>
+#include<string>
+#include<string.h>
+#include<iostream>
+using namespace std;
+struct queue
+{
+	string info;
+	queue * link;
+};
+struct queue * rear;
+struct queue * front;
+
+/*queue * create_queue(int cap)
+{
+	queue *temp;
+	temp=(queue *)malloc(sizeof(struct queue)*cap);
+	return(temp);
+}*/
+void enqueue(string item)
+{
+	//int item;
+	queue *temp=new queue;
+	//cout<<"Enter the item"<<endl;
+	//cin>>item;
+	if(front==NULL)
+	{
+		front=temp;
+		rear=temp;
+		rear->link=NULL;
+		rear->info=item;
+	}
+	else
+	{
+		rear->link=temp;
+		rear=temp;
+		rear->link=NULL;
+		rear->info=item;
+	}
+}
+void view_queue()
+{
+
+	queue * temp=front;
+	while(temp!=rear)
+	{
+		cout<<temp->info<<endl;
+		temp=temp->link;
+	}
+	cout<<temp->info<<endl;
+}
+string dequeue()
+{
+	string item;
+	if(front==NULL)
+	{
+		cout<<"Underflow"<<endl;
+		exit(0);
+	}
+	else if(front==rear)
+	{
+		item=front->info;
+		front=NULL;
+		rear=NULL;
+		return(item);
+	}
+	else
+	{
+		item=front->info;
+		front=front->link;
+		return(item);
+	}
+}
+int main()
+{
+
+
+}
