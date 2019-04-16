@@ -75,5 +75,57 @@ string dequeue()
 int main()
 {
 
+ string temp;
+  int i,j,totwt=0,temp1,n,tq=0;
+  float avgwt;
+cout<<"Enter no of processes"<<endl;
+	cin>>n;
+	string p[n];
+	int pt[n],pt1[n],tat[n],pr[n],ct[n],wt[n];
+    rear=NULL;
+	front=NULL;
+  for(i=0;i<n;i++)
+  {
+cout<<"Enter process "<<i+1<<" name"<<endl;
+ cin>>p[i];
+cout<<"Enter process time"<<endl;
+ cin>>pt[i];
+ pt1[i]=pt[i];
+cout<<"Enter priority"<<endl;
+ cin>>pr[i];
+  }
+  cout<<"Enter the timq quantum for processes"<<endl;
+  cin>>tq;
+
+
+ for(i=0;i<n-1;i++)
+ {
+ for(j=i+1;j<n;j++)
+ {
+   if(pr[i]>pr[j])
+ {
+   temp1=pr[i];
+ pr[i]=pr[j];
+  pr[j]=temp1;
+  temp1=pt[i];
+  pt[i]=pt[j];
+  pt[j]=temp1;
+ temp=p[i];
+ p[i]=p[j];
+  p[j]=temp;
+
+  temp1=pt1[i];
+  pt1[i]=pt1[j];
+  pt1[j]=temp1;
+  }
+    }
+  }
+
+
+
+  for(i=n-1;i>=0;i--)
+  {
+  enqueue(p[i]);
+  }
 
 }
