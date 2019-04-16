@@ -127,5 +127,71 @@ cout<<"Enter priority"<<endl;
   {
   enqueue(p[i]);
   }
+	
+
+for(int i=0;i<n;i++)
+{
+ct[i]=0;
+wt[i]=0;
+tat[i]=0;
+}
+
+  string y;
+  int index,time=0;
+  while(front!=NULL)
+  {
+  y=dequeue();
+  for(i=0;i<n;i++)
+  {
+  if(p[i]==y)
+  {
+  index=i;
+  break;
+  }
+  }
+  if(pt[index]>0)
+  {
+  cout<<"Process "<<p[index]<<" running"<<endl;
+  if(pt[index]>tq)
+    {
+      pt[index]=pt[index]-tq;
+      cout<<p[index]<<" ran for "<<tq<<" time"<<endl;
+
+      time=time+tq;
+      if(pt[index]>0)
+      {
+      enqueue(p[index]);
+      }
+
+    }
+  else{
+ cout<<p[index]<<" ran for "<<pt[index]<<" time"<<endl;
+
+ time=time+pt[index];
+ cout<<"process "<<p[index]<<" end at the time "<<time<<endl;
+ ct[index]=time;
+  pt[index]=0;
+   }
+}
+}
+
+cout<<endl;
+
+   for(int i=0;i<n;i++)
+   {
+   wt[i]=ct[i]-pt1[i];
+   totwt=totwt+wt[i];
+   }
+
+cout<<"Name"<<"    "<<"PR"<<"    "<<"PT"<<"     "<<"CT"<<"     "<<"WT"<<endl;
+for(int i=0;i<n;i++)
+{
+cout<<p[i]<<"      "<<pr[i]<<"      "<<pt1[i]<<"      "<<ct[i]<<"      "<<wt[i]<<endl;
+
+}
+
+   avgwt=totwt/n;
+  cout<<"Total waiting time ="<<totwt<<endl<<" Average waiting time "<<avgwt<<endl;
+
 
 }
